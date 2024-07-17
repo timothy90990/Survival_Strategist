@@ -1,7 +1,7 @@
 # Text based dungeon game fighting bosses such as "anxiety, depression, etc" using
 # items such as "antidepressant, relaxation, etc". Needs mockup for a map and to
 # rename bosses, items, and rooms. Add more bosses between rooms in the gameplay
-# loop to flesh it out. Make-type text prompt for the beginning.
+# loop to flesh it out. Make type text prompt for the beginning.
 
 import os
 from PIL import Image
