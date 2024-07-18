@@ -16,26 +16,19 @@ Structure of the project is still being worked on. Tenative structure is as foll
 castaway_retreat/
 ├── src/
 │   ├── modules/
-│   │   ├── __init__.py
 │   │   ├── user_interface.py
-│   │   ├── quote_generator.py
-│   │   ├── mental_health_education.py
-│   │   ├── survival_strategy.py
-│   │   └── database.py
-│   ├── __init__.py
+│   │   └── game_logic.py
 │   ├── config.py
-│   └── main.py
 ├── tests/
 │   ├── test_user_interface.py
-│   ├── test_quote_generator.py
-│   ├── test_mental_health_education.py
-│   ├── test_survival_strategy.py
-│   └── test_database.py
+│   └── test_game_logic.py
 ├── .gitignore
 ├── CHANGELOG.md
 ├── README.md
 ├── requirements.txt
-└── setup.py
+├── Map.jpeg
+├── character.png
+└── main.py
 ```
 
 ### Installation
