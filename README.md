@@ -1,6 +1,9 @@
 # Survival_Strategist
 COM-430: Software Engineering Group Project
 
+![image](https://github.com/user-attachments/assets/966c3a07-6d8c-45b6-a9b5-001611c0576f)
+
+
 ## Overview
 "Castaway Retreat: Mind and Survival" integrates survival strategy with inspiring content on mental health and awareness. This project aims to design, develop, and release a software application that is immersive, provides mental health education, and works on multiple platforms.
 
