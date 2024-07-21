@@ -1,3 +1,9 @@
+from src.config import ROOMS as rooms
+from src.config import ROOM_POSITION as room_positions
+from src.config import QUOTES_PATH as quotes_path
+
+picked_up_items = []
+
 class Player:
     def __init__(self, start_room):
         self.current_room = start_room
@@ -9,16 +15,19 @@ class Player:
             item = rooms[self.current_room].get("Item")
             if item and item not in self.inventory:
                 self.inventory.append(item)
-                return f"You travel {direction} and collect {item}."
-            return f"You travel {direction}"
+                picked_up_items.append(item)
+                return f"You travel {direction}", item
+            return f"You travel {direction}", None
         except KeyError:
-            return "You can't go that way."
+            return "You can't go that way.", None
 
     def get_item(self, item, rooms):
+        global picked_up_items
         try:
             if item == rooms[self.current_room]["Item"]:
                 if item not in self.inventory:
                     self.inventory.append(rooms[self.current_room]["Item"])
+                    picked_up_items.append(item)
                     return f"{item} retrieved!"
                 else:
                     return f"You already have the {item}"
@@ -27,27 +36,6 @@ class Player:
         except KeyError:
             return f"Can't find {item}"
 
-rooms = {
-    'roomOne': {'North': 'roomTwo', 'South': 'roomThree', 'East': 'roomFive', 'Item': 'One'},
-    'roomTwo': {'South': 'roomOne', 'Item': 'Two'},
-    'roomThree': {'North': 'roomOne', 'East': 'roomFour', 'Item': 'Three'},
-    'roomFive' : {'West': 'roomOne', 'North': 'roomSix', 'East': 'roomEight', 'Item': 'Four'},
-    'roomSix' : {'South': 'roomFive', 'East': 'roomSeven', 'Item': 'Five'},
-    'roomSeven': {'West': 'roomSix', 'Item': 'Six'},
-    'roomFour': {'West': 'roomThree', 'Item': 'Three'},
-    'roomEight': {'West': 'roomFive', 'Boss': 'Boss'}
-}
-
-room_positions = {
-    'roomOne': (50, 200),
-    'roomTwo': (50, 50),
-    'roomThree': (50, 350),
-    'roomFour': (200, 350),
-    'roomFive': (200, 200),
-    'roomSix': (200, 50),
-    'roomSeven': (350, 50),
-    'roomEight': (350, 200)
-}
 
 def process_input(user_input, player, rooms):
     next_move = user_input.split(' ')
