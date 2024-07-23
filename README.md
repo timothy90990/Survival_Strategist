@@ -53,7 +53,7 @@ castaway_retreat/
 ### Usage
 To run the application, execute the following command in your terminal or Command Prompt:
 ```bash
-python src/main.py
+python main.py
 ```
 
 ## Project Files
@@ -71,7 +71,8 @@ python src/main.py
 - **__init__.py**: Makes the `src` directory a package.
 
 ### Modules Directory: `src/modules`
-- **__init__.py**: Makes the `modules` directory a package.
+-
+ **__init__.py**: Makes the `modules` directory a package.
 - **user_interface.py**: Handles the user interface components and interactions.
 - **quote_generator.py**: Manages the quote generation feature, providing inspirational and mental health-related quotes.
 - **mental_health_education.py**: Contains educational content and resources related to mental health.
