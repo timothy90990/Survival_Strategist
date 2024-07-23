@@ -61,18 +61,14 @@ python main.py
 ### Root Directory
 - **README.md**: This file, which provides an overview of the project and explains the structure of the files.
 - **requirements.txt**: Lists all the dependencies required to run the project.
-- **setup.py**: Setup script for packaging the project.
+- **main.py**: The entry point of the application. It initializes and runs the main program.
 - **.gitignore**: Specifies files and directories to be ignored by Git.
 - **CHANGELOG.md**: Contains the log of changes made to the project.
 
 ### Source Code Directory: `src`
-- **main.py**: The entry point of the application. It initializes and runs the main program.
 - **config.py**: Contains configuration settings for the application.
-- **__init__.py**: Makes the `src` directory a package.
 
 ### Modules Directory: `src/modules`
--
- **__init__.py**: Makes the `modules` directory a package.
 - **user_interface.py**: Handles the user interface components and interactions.
 - **quote_generator.py**: Manages the quote generation feature, providing inspirational and mental health-related quotes.
 - **mental_health_education.py**: Contains educational content and resources related to mental health.
