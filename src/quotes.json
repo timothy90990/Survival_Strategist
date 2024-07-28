@@ -1,0 +1,62 @@
+{
+    "One": {
+        "key_message": "You found a itemOne answer the question to collect the item",
+        "question": "What is a common symptom of anxiety?",
+        "answers": ["Increased appetite", "Restlessness"],
+        "correct_answer": "Restlessness"
+    },
+    "Two": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of depression?",
+        "answers": ["Increased energy", "Improved mood", "Loss of interest in activities", "Increased appetite"],
+        "correct_answer": "Loss of interest in activities"
+    },
+    "Three": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of PTSD?",
+        "answers": ["Flashbacks", "Nightmares", "Increased appetite", "Improved sleep"],
+        "correct_answer": "Flashbacks"
+    },
+    "Four": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of bipolar disorder?",
+        "answers": ["Mood swings", "Increased energy", "Improved focus", "Decreased appetite"],
+        "correct_answer": "Mood swings"
+    },
+    "Five": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of ADHD?",
+        "answers": ["Difficulty focusing", "Increased energy", "Improved organization", "Decreased impulsivity"],
+        "correct_answer": "Difficulty focusing"
+    },
+    "Six": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of OCD?",
+        "answers": ["Obsessive thoughts", "Compulsive behaviors", "Increased anxiety", "Decreased motivation"],
+        "correct_answer": "Obsessive thoughts"
+    },
+    "Seven": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of schizophrenia?",
+        "answers": ["Hallucinations", "Delusions", "Disorganized thinking", "Decreased motivation"],
+        "correct_answer": "Hallucinations"
+    },
+    "Eight": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of borderline personality disorder?",
+        "answers": ["Mood swings", "Impulsive behavior", "Fear of abandonment", "Decreased self-esteem"],
+        "correct_answer": "Fear of abandonment"
+    },
+    "Nine": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of narcissistic personality disorder?",
+        "answers": ["Grandiosity", "Lack of empathy", "Need for admiration", "Decreased self-confidence"],
+        "correct_answer": "Grandiosity"
+    },
+    "Ten": {
+        "key_message": "You found a key to the door.",
+        "question": "What is a common symptom of avoidant personality disorder?",
+        "answers": ["Social anxiety", "Fear of rejection", "Perfectionism", "Decreased motivation"],
+        "correct_answer": "Social anxiety"
+    }
+}

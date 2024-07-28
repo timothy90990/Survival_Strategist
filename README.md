@@ -1,6 +1,9 @@
 # Survival_Strategist
 COM-430: Software Engineering Group Project
 
+![image](https://github.com/user-attachments/assets/966c3a07-6d8c-45b6-a9b5-001611c0576f)
+
+
 ## Overview
 "Castaway Retreat: Mind and Survival" integrates survival strategy with inspiring content on mental health and awareness. This project aims to design, develop, and release a software application that is immersive, provides mental health education, and works on multiple platforms.
 
@@ -16,26 +19,19 @@ Structure of the project is still being worked on. Tenative structure is as foll
 castaway_retreat/
 ├── src/
 │   ├── modules/
-│   │   ├── __init__.py
 │   │   ├── user_interface.py
-│   │   ├── quote_generator.py
-│   │   ├── mental_health_education.py
-│   │   ├── survival_strategy.py
-│   │   └── database.py
-│   ├── __init__.py
+│   │   └── game_logic.py
 │   ├── config.py
-│   └── main.py
 ├── tests/
 │   ├── test_user_interface.py
-│   ├── test_quote_generator.py
-│   ├── test_mental_health_education.py
-│   ├── test_survival_strategy.py
-│   └── test_database.py
+│   └── test_game_logic.py
 ├── .gitignore
 ├── CHANGELOG.md
 ├── README.md
 ├── requirements.txt
-└── setup.py
+├── Map.jpeg
+├── character.png
+└── main.py
 ```
 
 ### Installation
@@ -57,7 +53,7 @@ castaway_retreat/
 ### Usage
 To run the application, execute the following command in your terminal or Command Prompt:
 ```bash
-python src/main.py
+python main.py
 ```
 
 ## Project Files
@@ -65,17 +61,14 @@ python src/main.py
 ### Root Directory
 - **README.md**: This file, which provides an overview of the project and explains the structure of the files.
 - **requirements.txt**: Lists all the dependencies required to run the project.
-- **setup.py**: Setup script for packaging the project.
+- **main.py**: The entry point of the application. It initializes and runs the main program.
 - **.gitignore**: Specifies files and directories to be ignored by Git.
 - **CHANGELOG.md**: Contains the log of changes made to the project.
 
 ### Source Code Directory: `src`
-- **main.py**: The entry point of the application. It initializes and runs the main program.
 - **config.py**: Contains configuration settings for the application.
-- **__init__.py**: Makes the `src` directory a package.
 
 ### Modules Directory: `src/modules`
-- **__init__.py**: Makes the `modules` directory a package.
 - **user_interface.py**: Handles the user interface components and interactions.
 - **quote_generator.py**: Manages the quote generation feature, providing inspirational and mental health-related quotes.
 - **mental_health_education.py**: Contains educational content and resources related to mental health.
