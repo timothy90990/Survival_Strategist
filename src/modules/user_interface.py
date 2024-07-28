@@ -1,6 +1,7 @@
 import customtkinter as ctk
-from PIL import Image, ImageTk
-from src.modules.game_logic import Player, rooms, room_positions, process_input, picked_up_items
+from customtkinter import CTkImage
+from PIL import Image
+from src.modules.game_logic import Player, rooms, room_positions, process_input
 from src.modules.quotes import get_quote
 import logging
 
@@ -12,12 +13,17 @@ class DungeonGameGUI:
         self.player = Player(start_room="roomOne")
         self.msg = ""
 
+        # Load the map image
+        map_image = Image.open("src/media/Map.jpeg")
+        self.map_image = CTkImage(light_image=map_image, dark_image=map_image, size=(400, 400))
+
+        # Load the character image
+        character_image = Image.open("src/media/character.png")
+        self.character_image = CTkImage(light_image=character_image, dark_image=character_image, size=(20, 20))
+
         self.create_widgets()
         self.show_map()
         self.show_character()
-        
-        # Add listener for picked up items
-        self.root.after(100, self.check_picked_up_items)
 
     def create_widgets(self):
         logging.info("Creating widgets")
@@ -35,18 +41,24 @@ class DungeonGameGUI:
         self.info_label = ctk.CTkLabel(self.controls_frame, text="", justify="left")
         self.info_label.pack()
 
-        # Add directional buttons
-        self.north_button = ctk.CTkButton(self.controls_frame, text="North", command=lambda: self.move("North"))
-        self.north_button.pack()
+        # Add arrow buttons
+        button_size = 40
+        arrow_frame = ctk.CTkFrame(self.controls_frame)
+        arrow_frame.pack(pady=10)
+        # Remove the background color from the arrow frame
+        arrow_frame.configure(fg_color="transparent")
 
-        self.south_button = ctk.CTkButton(self.controls_frame, text="South", command=lambda: self.move("South"))
-        self.south_button.pack()
+        self.north_button = ctk.CTkButton(arrow_frame, text="↑", width=button_size, height=button_size, command=lambda: self.move("North"))
+        self.north_button.grid(row=0, column=1)
 
-        self.east_button = ctk.CTkButton(self.controls_frame, text="East", command=lambda: self.move("East"))
-        self.east_button.pack()
+        self.west_button = ctk.CTkButton(arrow_frame, text="←", width=button_size, height=button_size, command=lambda: self.move("West"))
+        self.west_button.grid(row=1, column=0)
 
-        self.west_button = ctk.CTkButton(self.controls_frame, text="West", command=lambda: self.move("West"))
-        self.west_button.pack()
+        self.east_button = ctk.CTkButton(arrow_frame, text="→", width=button_size, height=button_size, command=lambda: self.move("East"))
+        self.east_button.grid(row=1, column=2)
+
+        self.south_button = ctk.CTkButton(arrow_frame, text="↓", width=button_size, height=button_size, command=lambda: self.move("South"))
+        self.south_button.grid(row=2, column=1)
 
         self.character_label = ctk.CTkLabel(self.map_frame, text="")  # Initialize without text
         self.character_label.place(x=0, y=0)  # Initial placement
@@ -55,28 +67,22 @@ class DungeonGameGUI:
 
     def show_map(self):
         logging.info("Showing map")
-        img = Image.open('src/media/Map.jpeg')
-        img = img.resize((400, 400), Image.LANCZOS)
-        self.map_img = ImageTk.PhotoImage(img)
-        self.map_label.configure(image=self.map_img)
+        self.map_label.configure(image=self.map_image)
 
     def show_character(self):
         logging.info("Showing character")
-        self.character_img = Image.open('src/media/character.png')
-        self.character_img = self.character_img.resize((20, 20), Image.LANCZOS)
-        self.character_img = ImageTk.PhotoImage(self.character_img)
-        self.character_label.configure(image=self.character_img)  # Update label with image
+        self.character_label.configure(image=self.character_image)
         self.update_character_position()
 
     def update_character_position(self):
         logging.debug(f"Updating character position to {self.player.current_room}")
-        pos = room_positions[self.player.current_room]
-        self.character_label.place(x=pos[0], y=pos[1])
+        x, y = room_positions[self.player.current_room]
+        self.character_label.place(x=x, y=y)
 
     def update_info(self):
         logging.debug(f"Updating info: {self.player.current_room}, Inventory: {self.player.inventory}")
-        info_text = f"You are in the {self.player.current_room}\nInventory: {self.player.inventory}\n{'-' * 27}"
-        self.info_label.configure(text=info_text)
+        info_text = f"You are in the {self.player.current_room}\nInventory: {self.player.inventory}\n"
+        self.info_label.configure(text=info_text, anchor="center")
         self.update_character_position()
 
     def process_input(self, event):
@@ -89,30 +95,91 @@ class DungeonGameGUI:
         logging.debug(f"Moving {direction}")
         self.msg = self.player.move(direction, rooms)
         self.update_info()
+        self.check_room_item()
 
-    def show_dialog(self, title, message, mental_health_quote):
+    def check_room_item(self):
+        current_room = self.player.current_room
+        room_item = rooms[current_room].get("Item")
+        if room_item and room_item not in self.player.inventory:
+            self.show_item_dialog(room_item)
+
+    def show_item_dialog(self, item):
+        quote_data = get_quote(item)
+        self.show_dialog(
+            "New Item",
+            f"You found: {item}\n\n{quote_data['key_message']}",
+            quote_data['question'],
+            quote_data['answers'],
+            quote_data['correct_answer'],
+            item
+        )
+
+    def show_dialog(self, title, message, question, answers, correct_answer, item):
         logging.info(f"Showing dialog: {title}")
         dialog = ctk.CTkToplevel(self.root)
         dialog.title(title)
-        dialog.geometry("400x200")
-        dialog.attributes('-topmost', True)  # Make the dialog always on top
-        dialog.grab_set()  # Prevent interaction with the main window
+        dialog.attributes('-topmost', True)
+        # Prevent user from using the x button to close the dialog
+        dialog.protocol("WM_DELETE_WINDOW", lambda: None)
+        # Remove the x button from the dialog
+        dialog.wm_overrideredirect(True)
+        dialog.grab_set()
 
-        label = ctk.CTkLabel(dialog, text=message, wraplength=350)
+        content_frame = ctk.CTkFrame(dialog)
+        content_frame.pack(padx=20, pady=20, fill="both", expand=True)
+
+        label = ctk.CTkLabel(content_frame, text=message, wraplength=350)
         label.pack(pady=10)
 
-        quote_label = ctk.CTkLabel(dialog, text=f"Mental Health Quote:\n{mental_health_quote}", wraplength=350)
-        quote_label.pack(pady=10)
+        question_label = ctk.CTkLabel(content_frame, text=question, wraplength=350)
+        question_label.pack(pady=10)
 
-        ok_button = ctk.CTkButton(dialog, text="OK", command=dialog.destroy)
-        ok_button.pack(pady=10)
+        result_label = ctk.CTkLabel(content_frame, text="")
+        result_label.pack(pady=10)
 
-        dialog.wait_window()  # Wait for the dialog to be closed before continuing
+        ok_button = ctk.CTkButton(content_frame, text="OK", state="disabled")
+        ok_button.pack(side="left", padx=(0, 10), pady=10)
 
-    def check_picked_up_items(self):
-        global picked_up_items
-        if picked_up_items:
-            item = picked_up_items.pop(0)
-            quote_data = get_quote(item)
-            self.show_dialog("New Item", f"You picked up: {item}\n\n{quote_data['key_message']}", quote_data['mental_health_quote'])
-        self.root.after(100, self.check_picked_up_items)
+        def on_try_later():
+            dialog.destroy()
+
+        try_later_button = ctk.CTkButton(content_frame, text="Try Again Later", command=on_try_later)
+        try_later_button.pack(side="right", padx=(10, 0), pady=10)
+        # Change the color to red for the try later button
+        try_later_button.configure(fg_color="red")
+
+        def check_answer(selected_answer):
+            nonlocal correct_answer_given
+            if selected_answer == correct_answer:
+                result = "Correct!"
+                correct_answer_given = True
+                ok_button.configure(state="normal")
+                for btn in answer_buttons:
+                    btn.configure(state="disabled")
+            else:
+                result = "Incorrect. Try again!"
+            result_label.configure(text=result)
+
+        answer_buttons = []
+        for answer in answers:
+            answer_button = ctk.CTkButton(content_frame, text=answer, command=lambda a=answer: check_answer(a))
+            answer_button.pack(pady=5)
+            answer_buttons.append(answer_button)
+
+        correct_answer_given = False
+
+        def on_ok():
+            if correct_answer_given:
+                self.player.inventory.append(item)
+                self.update_info()
+            dialog.destroy()
+
+        ok_button.configure(command=on_ok)
+
+        dialog.update_idletasks()
+        dialog_width = content_frame.winfo_reqwidth() + 40
+        dialog_height = content_frame.winfo_reqheight() + 40
+        dialog.geometry(f"{dialog_width}x{dialog_height}")
+        dialog.resizable(False, False)
+
+        dialog.wait_window()

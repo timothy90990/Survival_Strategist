@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.0.2]
+
+### Added
+- Implimented multiple choice questions for items picked up as well as a "Try Later" option if the user is not ready to answer the question.
+- Added a log file to the project located in the temporary folder. C:\Users\<username>\AppData\Local\Temp\dungeon_game.log
+
+### Changed
+- Modified `check_picked_up_items` and `show_dialog` methods in `DungeonGameGUI` class to allow users to postpone answering questions for picked up items
+- Changed the North, East, West, and South to arrow buttons instead.
+
+### Fixes
+- Fixed issue with "Try Later" functionality not working correctly
+- Fixed issue with items being automatically added to inventory when entering a room
 
 ### Added
 - New file `src/modules/quotes.py` to handle quote processing

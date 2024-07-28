@@ -1,3 +1,17 @@
+import os
+import tempfile
+
+# Add debug level option
+DEBUG_LEVEL = "DEBUG"  # Can be "DEBUG", "INFO", "WARNING", "ERROR", or "CRITICAL"
+#### CHANGE ME FOR RELEASE ####
+
+# Add log file path in temporary folder
+LOG_FILE = os.path.join(tempfile.gettempdir(), "dungeon_game.log")
+# Log files will be at C:\Users\<username>\AppData\Local\Temp\dungeon_game.log
+
+# Show where the log file is in the terminal
+print(f"Log file is located at: {LOG_FILE}")
+
 # Add the path of quotes.json file
 QUOTES_PATH = "src/quotes.json"
 
