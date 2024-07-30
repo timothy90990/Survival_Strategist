@@ -28,6 +28,9 @@ class Player:
         except KeyError:
             return f"Can't find {item}"
 
+    def can_fight_boss(self):
+        return len(self.inventory) >= 6
+
 
 def process_input(user_input, player, rooms):
     next_move = user_input.split(' ')
@@ -44,6 +47,11 @@ def process_input(user_input, player, rooms):
         return player.move(direction, rooms)
     elif action == "Get":
         return player.get_item(item, rooms)
+    elif action == "Fight" and player.current_room == "roomEight":
+        if player.can_fight_boss():
+            return "BossFight"
+        else:
+            return "You need at least 6 items to fight the boss!"
     elif action == "Exit":
         return "Exit"
     else:
