@@ -137,7 +137,7 @@ class DungeonGameGUI:
         result_label = ctk.CTkLabel(content_frame, text="")
         result_label.pack(pady=10)
 
-        ok_button = ctk.CTkButton(content_frame, text="OK", state="disabled")
+        ok_button = ctk.CTkButton(content_frame, text="Collect Item", state="disabled")
         ok_button.pack(side="left", padx=(0, 10), pady=10)
 
         def on_try_later():
