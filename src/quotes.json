@@ -2,61 +2,46 @@
     "One": {
         "key_message": "You found a itemOne answer the question to collect the item",
         "question": "What is a common symptom of anxiety?",
-        "answers": ["Increased appetite", "Restlessness"],
-        "correct_answer": "Restlessness"
+        "answers": ["Correct answer", "Incorrect answer"],
+        "correct_answer": "Correct answer"
     },
     "Two": {
         "key_message": "You found a key to the door.",
         "question": "What is a common symptom of depression?",
-        "answers": ["Increased energy", "Improved mood", "Loss of interest in activities", "Increased appetite"],
-        "correct_answer": "Loss of interest in activities"
+        "answers": ["Correct answer", "Incorrect answer"],
+        "correct_answer": "Correct answer"
     },
     "Three": {
         "key_message": "You found a key to the door.",
         "question": "What is a common symptom of PTSD?",
-        "answers": ["Flashbacks", "Nightmares", "Increased appetite", "Improved sleep"],
-        "correct_answer": "Flashbacks"
+        "answers": ["Correct answer", "Incorrect answer"],
+        "correct_answer": "Correct answer"
     },
     "Four": {
         "key_message": "You found a key to the door.",
         "question": "What is a common symptom of bipolar disorder?",
-        "answers": ["Mood swings", "Increased energy", "Improved focus", "Decreased appetite"],
-        "correct_answer": "Mood swings"
+        "answers": ["Correct answer", "Incorrect answer"],
+        "correct_answer": "Correct answer"
     },
     "Five": {
         "key_message": "You found a key to the door.",
         "question": "What is a common symptom of ADHD?",
-        "answers": ["Difficulty focusing", "Increased energy", "Improved organization", "Decreased impulsivity"],
-        "correct_answer": "Difficulty focusing"
+        "answers": ["Correct answer", "Incorrect answer"],
+        "correct_answer": "Correct answer"
     },
     "Six": {
         "key_message": "You found a key to the door.",
         "question": "What is a common symptom of OCD?",
-        "answers": ["Obsessive thoughts", "Compulsive behaviors", "Increased anxiety", "Decreased motivation"],
-        "correct_answer": "Obsessive thoughts"
+        "answers": ["Correct answer", "Incorrect answer"],
+        "correct_answer": "Correct answer"
     },
-    "Seven": {
-        "key_message": "You found a key to the door.",
-        "question": "What is a common symptom of schizophrenia?",
-        "answers": ["Hallucinations", "Delusions", "Disorganized thinking", "Decreased motivation"],
-        "correct_answer": "Hallucinations"
+    "Boss": {
+        "key_message": "You've entered the final boss room. The air is thick with tension, and you can sense the presence of your inner demons."
     },
-    "Eight": {
-        "key_message": "You found a key to the door.",
-        "question": "What is a common symptom of borderline personality disorder?",
-        "answers": ["Mood swings", "Impulsive behavior", "Fear of abandonment", "Decreased self-esteem"],
-        "correct_answer": "Fear of abandonment"
+    "Battle": {
+        "key_message": "The battle against your inner demons has begun. Remember all that you've learned on your journey. Your strength lies in your resilience and growth."
     },
-    "Nine": {
-        "key_message": "You found a key to the door.",
-        "question": "What is a common symptom of narcissistic personality disorder?",
-        "answers": ["Grandiosity", "Lack of empathy", "Need for admiration", "Decreased self-confidence"],
-        "correct_answer": "Grandiosity"
-    },
-    "Ten": {
-        "key_message": "You found a key to the door.",
-        "question": "What is a common symptom of avoidant personality disorder?",
-        "answers": ["Social anxiety", "Fear of rejection", "Perfectionism", "Decreased motivation"],
-        "correct_answer": "Social anxiety"
+    "Credits": {
+        "key_message": "Congratulations on completing 'Castaway Retreat: Mind and Survival'!\n\nDeveloped by:\n- [Your Team Names]\n\nSpecial Thanks:\n- [Any acknowledgments]\n\nRemember, your mental health journey is ongoing. Stay strong and keep growing!"
     }
 }

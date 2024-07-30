@@ -15,7 +15,8 @@ def get_quote(item):
             "correct_answer": ""
         })
         # Randomize the order of the answers
-        quote_data["answers"] = random.sample(quote_data["answers"], len(quote_data["answers"]))
+        if "answers" in quote_data:
+            quote_data["answers"] = random.sample(quote_data["answers"], len(quote_data["answers"]))
         logging.debug(f"Quote retrieved: {quote_data}")
         return quote_data
     except Exception as e:

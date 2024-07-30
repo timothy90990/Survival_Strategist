@@ -4,6 +4,7 @@ from PIL import Image
 from src.modules.game_logic import Player, rooms, room_positions, process_input
 from src.modules.quotes import get_quote
 import logging
+import random
 
 class DungeonGameGUI:
     def __init__(self, root):
@@ -84,6 +85,10 @@ class DungeonGameGUI:
         info_text = f"You are in the {self.player.current_room}\nInventory: {self.player.inventory}\n"
         self.info_label.configure(text=info_text, anchor="center")
         self.update_character_position()
+        if self.player.current_room == "roomEight":
+            self.show_boss_dialog()
+        else:
+            pass
 
     def process_input(self, event):
         logging.debug(f"Processing input: {self.input_entry.get()}")
@@ -183,3 +188,101 @@ class DungeonGameGUI:
         dialog.resizable(False, False)
 
         dialog.wait_window()
+
+    def show_boss_dialog(self):
+        boss_data = get_quote("Boss")
+        dialog = ctk.CTkToplevel(self.root)
+        dialog.title("Final Boss Room")
+        dialog.attributes('-topmost', True)
+        dialog.protocol("WM_DELETE_WINDOW", lambda: self.close_boss_dialog(dialog))
+        dialog.grab_set()
+
+        content_frame = ctk.CTkFrame(dialog)
+        content_frame.pack(padx=20, pady=20, fill="both", expand=True)
+
+        message_label = ctk.CTkLabel(content_frame, text=boss_data["key_message"], wraplength=350)
+        message_label.pack(pady=10)
+
+        fight_button = ctk.CTkButton(content_frame, text="Fight Boss", command=lambda: self.fight_boss(dialog))
+        fight_button.pack(pady=10)
+
+        if not self.player.can_fight_boss():
+            fight_button.configure(state="disabled")
+            items_needed = 6 - len(self.player.inventory)
+            instruction_label = ctk.CTkLabel(content_frame, text=f"Collect {items_needed} more item(s) to fight the boss.", wraplength=350)
+            instruction_label.pack(pady=10)
+
+        exit_button = ctk.CTkButton(content_frame, text="Exit Room", command=lambda: self.close_boss_dialog(dialog))
+        exit_button.pack(pady=10)
+
+        dialog.update_idletasks()
+        dialog_width = content_frame.winfo_reqwidth() + 40
+        dialog_height = content_frame.winfo_reqheight() + 40
+        dialog.geometry(f"{dialog_width}x{dialog_height}")
+        dialog.resizable(False, False)
+
+    def close_boss_dialog(self, dialog):
+        dialog.grab_release()
+        dialog.destroy()
+
+    def fight_boss(self, dialog):
+        dialog.destroy()
+        self.show_explosion(callback=self.show_credits)
+
+    def show_explosion(self, callback=None):
+        explosion = ctk.CTkToplevel(self.root)
+        explosion.title("Explosion")
+        explosion.attributes('-topmost', True)
+        explosion.geometry("400x400")
+
+        canvas = ctk.CTkCanvas(explosion, width=400, height=400, bg="black")
+        canvas.pack()
+
+        particles = []
+        for _ in range(100):
+            x = 200
+            y = 200
+            dx = random.uniform(-5, 5)
+            dy = random.uniform(-5, 5)
+            radius = random.uniform(2, 5)
+            color = random.choice(["red", "orange", "yellow"])
+            particles.append([x, y, dx, dy, radius, color])
+
+        def animate_explosion(step=0):
+            canvas.delete("all")
+            still_moving = False
+            for particle in particles:
+                x, y, dx, dy, radius, color = particle
+                if abs(dx) > 0.1 or abs(dy) > 0.1:
+                    still_moving = True
+                    particle[0] += dx
+                    particle[1] += dy
+                    particle[3] += 0.1  # Add gravity effect
+                    particle[2] *= 0.98  # Add air resistance
+                    particle[3] *= 0.98  # Add air resistance
+                    canvas.create_oval(x-radius, y-radius, x+radius, y+radius, fill=color, outline=color)
+            
+            if still_moving and step < 100:
+                explosion.after(20, animate_explosion, step+1)
+            else:
+                explosion.after(500, lambda: end_explosion(explosion, callback))
+
+        def end_explosion(explosion_window, callback_func):
+            explosion_window.destroy()
+            if callback_func:
+                self.root.after(100, callback_func)
+
+        animate_explosion()
+
+    def show_credits(self):
+        credits_data = get_quote("Credits")
+        credits = ctk.CTkToplevel(self.root)
+        credits.title("Credits")
+        credits.attributes('-topmost', True)
+        credits.geometry("400x400")
+
+        credits_label = ctk.CTkLabel(credits, text=credits_data["key_message"], wraplength=350)
+        credits_label.pack(pady=20)
+
+        close_button = ctk.CTkButton(credits, text="Close", command=credits.destroy)
+        close_button.pack(pady=10)
