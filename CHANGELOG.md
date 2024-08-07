@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.0.4] - 2024-08-06
+### Added
+- Comprehensive preambles to all functions and methods across the project
+  - Added to `game_logic.py`, `user_interface.py`, and `quotes.py`
+  - Each preamble includes module/function name, date, programmer name, purpose, version, and RTM number
+- RTM (Requirements Traceability Matrix) numbers for each function and method
+
+### Changed
+- Updated documentation style to meet project requirements
+- Improved code readability and maintainability with detailed function descriptions
+- Map is generated rather than using a sketch image
+
 ## [0.0.3]
 ### Added
 - Final boss placeholder logic
@@ -44,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Improved error handling for quote retrieval in case of file read issues
 
-## [0.0.1] - 2024-07-13???
+## [0.0.1] - 2024-07-13
 
 ### Added
 - Initial project structure

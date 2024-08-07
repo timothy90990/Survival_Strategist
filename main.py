@@ -3,7 +3,17 @@ from src.modules.user_interface import DungeonGameGUI
 import logging
 from src.config import DEBUG_LEVEL, LOG_FILE
 
-def setup_logging():
+def setup_logging(): # Last week
+    """
+    Module: setup_logging
+    Date: 8/2/24
+    Programmer: Timothy Stowe
+    
+    Purpose: Sets up the logging configuration for the application.
+    
+    Version: 1.0
+    RTM: 027
+    """
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
@@ -23,6 +33,16 @@ def setup_logging():
     logger.addHandler(console_handler)
 
 def main():
+    """
+    Module: main
+    Date: 7/26/24
+    Programmer: Timothy Stowe
+    
+    Purpose: The main function for the application.
+    
+    Version: 1.0
+    RTM: 028
+    """
     setup_logging()
     logging.info("Starting the application")
     root = ctk.CTk()
@@ -30,4 +50,14 @@ def main():
     root.mainloop()
 
 if __name__ == "__main__":
+    """
+    Module: main
+    Date: 7/26/24
+    Programmer: Timothy Stowe
+    
+    Purpose: The main function for the application.
+    
+    Version: 1.0
+    RTM: 029
+    """
     main()

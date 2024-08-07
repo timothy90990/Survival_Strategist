@@ -4,6 +4,18 @@ import logging
 import random
 
 def get_quote(item):
+    """
+    Module: get_quote
+    Date: 7/26/24
+    Programmer: Timothy Stowe
+    
+    Purpose: Retrieves a quote and associated data for a given item from the quotes file.
+    If the item is not found, it returns a default message. This function also randomizes
+    the order of answer options for multiple-choice questions.
+    
+    Version: 1.0
+    RTM: 030
+    """
     logging.debug(f"Getting quote for item: {item}")
     try:
         with open(QUOTES_PATH, 'r') as file:
