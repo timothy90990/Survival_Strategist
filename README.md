@@ -1,7 +1,8 @@
 # Survival_Strategist
 COM-430: Software Engineering Group Project
 
-![image](https://github.com/user-attachments/assets/966c3a07-6d8c-45b6-a9b5-001611c0576f)
+![image](https://github.com/user-attachments/assets/da205c91-2cec-4b05-9af3-4821af23f3d1)
+
 
 
 ## Overview
@@ -18,10 +19,14 @@ Structure of the project is still being worked on. Tenative structure is as foll
 ```
 castaway_retreat/
 ├── src/
+│   ├── media/
+│   │   ├── character.png
 │   ├── modules/
 │   │   ├── user_interface.py
+│   │   ├── quotes.py
 │   │   └── game_logic.py
 │   ├── config.py
+│   ├── quotes.json
 ├── tests/
 │   ├── test_user_interface.py
 │   └── test_game_logic.py
@@ -29,8 +34,6 @@ castaway_retreat/
 ├── CHANGELOG.md
 ├── README.md
 ├── requirements.txt
-├── Map.jpeg
-├── character.png
 └── main.py
 ```
 
