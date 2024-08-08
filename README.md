@@ -19,19 +19,19 @@ Structure of the project is still being worked on. Tenative structure is as foll
 ```
 castaway_retreat/
 ├── src/
-│   ├── modules/
-│   │   ├── user_interface.py
-│   │   └── game_logic.py
-│   ├── config.py
-├── tests/
-│   ├── test_user_interface.py
-│   └── test_game_logic.py
+│ ├── media/
+│ │ ├── character.png
+│ ├── modules/
+│ │ ├── user_interface.py
+│ │ ├── quotes.py
+│ │ ├── game_logic.py
+│ │ ├── quotes.py
+│ ├── config.py
+│ └── quotes.json
 ├── .gitignore
 ├── CHANGELOG.md
 ├── README.md
 ├── requirements.txt
-├── Map.jpeg
-├── character.png
 └── main.py
 ```
 
@@ -68,17 +68,12 @@ python main.py
 
 ### Source Code Directory: `src`
 - **config.py**: Contains configuration settings for the application.
+- **quotes.json**: Stores quotes used by the application.
+
+### Media Directory: `src/media`
+- **character.png**: Image asset for the application.
 
 ### Modules Directory: `src/modules`
 - **user_interface.py**: Handles the user interface components and interactions.
-- **quote_generator.py**: Manages the quote generation feature, providing inspirational and mental health-related quotes.
-- **mental_health_education.py**: Contains educational content and resources related to mental health.
-- **survival_strategy.py**: Implements features and content related to survival strategies.
-- **database.py**: Manages database interactions, including creating and querying the database.
-
-### Tests Directory: `tests`
-- **test_user_interface.py**: Contains unit tests for the user interface module.
-- **test_quote_generator.py**: Contains unit tests for the quote generator module.
-- **test_mental_health_education.py**: Contains unit tests for the mental health education module.
-- **test_survival_strategy.py**: Contains unit tests for the survival strategy module.
-- **test_database.py**: Contains unit tests for the database module.
+- **quotes.py**: Handles quote processing and retrieval.
+- **game_logic.py**: Contains the core game logic.
