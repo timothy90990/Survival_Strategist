@@ -1,7 +1,8 @@
 # Survival_Strategist
 COM-430: Software Engineering Group Project
 
-![image](https://github.com/user-attachments/assets/966c3a07-6d8c-45b6-a9b5-001611c0576f)
+![image](https://github.com/user-attachments/assets/15097b85-1baf-413f-a6d9-b776d927e39d)
+
 
 
 ## Overview
